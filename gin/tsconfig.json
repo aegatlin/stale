@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "outDir": "dist",
+    "target": "ES6",
+    "module": "node16"
+  },
+  "include": ["lib/**/*"]
+}
