@@ -1,0 +1,43 @@
+{
+  "private": true,
+  "name": "reftable",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "next build",
+    "start": "next start",
+    "dev": "next",
+    "format": "npx prettier --write \"src/**/**.{ts,tsx,js}\"",
+    "lint": "eslint \"src/**\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format && npm run lint"
+    }
+  },
+  "author": "Aegleg",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "csstips": "^1.2.0",
+    "masonry-layout": "^4.2.2",
+    "next": "^10.0.7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "typestyle": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/masonry-layout": "^4.2.2",
+    "@types/node": "^14.14.31",
+    "@types/react": "^17.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^8.0.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "husky": "^5.1.1",
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.5"
+  }
+}
