@@ -1,0 +1,62 @@
+{
+  "name": "pigmig",
+  "version": "0.2.3",
+  "description": "Pigmig is a postgresql database migration tool.",
+  "main": "dist/code/pigmig.js",
+  "bin": {
+    "pigmig.newmig": "dist/cli/newmig.js",
+    "pigmig.migrate": "dist/cli/migrate.js"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "ppp": "npm version patch && npm publish && git push",
+    "test": "mocha",
+    "cli": "ts-node src/cli.ts",
+    "format": "prettier --write src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aegatlin/pigmig.git"
+  },
+  "author": "Austin Gatlin",
+  "license": "MIT",
+  "keywords": [
+    "postgres",
+    "postgresql",
+    "pg",
+    "psql",
+    "sql",
+    "sequel",
+    "database",
+    "migration",
+    "migrator",
+    "migrations",
+    "small",
+    "minimal",
+    "typescript"
+  ],
+  "bugs": {
+    "url": "https://github.com/aegatlin/pigmig/issues"
+  },
+  "homepage": "https://github.com/aegatlin/pigmig#readme",
+  "mocha": {
+    "require": "ts-node/register",
+    "extension": [
+      "ts"
+    ]
+  },
+  "dependencies": {
+    "eor": "^0.1.5",
+    "pg": "^8.5.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.14",
+    "@types/mocha": "^9.1.0",
+    "@types/pg": "^7.14.7",
+    "chai": "^4.2.0",
+    "mocha": "^9.2.0",
+    "prettier": "^2.2.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.1.2"
+  }
+}
