@@ -1,0 +1,14 @@
+# from yarn
+node_modules
+yarn-error.log
+
+# from parcel
+dist
+.cache
+
+# from cypress
+cypress/videos
+cypress/screenshots
+
+# from direnv
+.envrc

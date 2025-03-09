@@ -1,0 +1,89 @@
+image: node:latest
+
+stages:
+  - build
+  - test
+  - deploy-staging
+  - smoke-staging
+  - deploy-prod
+  - smoke-prod
+
+cache:
+  paths:
+    - node_modules/
+    - yarn.lock
+
+build:
+  stage: build
+  script:
+    - yarn
+    - yarn build
+
+unit-test:
+  stage: test
+  script:
+    - yarn
+    - yarn test
+
+integration-test:
+  image: cypress/base:latest
+  stage: test
+  cache:
+    key: cypress
+    paths:
+      - node_modules/
+      - yarn.lock
+  script:
+    - yarn
+    - yarn cypress install
+    - yarn integration-test
+
+deploy-staging:
+  stage: deploy-staging
+  only: [master]
+  script:
+    - yarn install --prod
+    - apt-get update -yq
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=ENFRAME_APP_NAME-staging --api-key=$HEROKU_API_KEY
+
+smoke-staging:
+  image: cypress/base:latest
+  stage: smoke-staging
+  cache:
+    key: cypress
+    paths:
+      - node_modules/
+      - yarn.lock
+  only: [master]
+  script:
+    - yarn
+    - yarn cypress install
+    - yarn cypress run -c baseUrl=https://ENFRAME_APP_NAME-staging.herokuapp.com/
+
+deploy-prod:
+  stage: deploy-prod
+  when: manual
+  only: [master]
+  allow_failure: false
+  script:
+    - yarn install --prod
+    - apt-get update -yq
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=ENFRAME_APP_NAME-prod --api-key=$HEROKU_API_KEY
+
+smoke-prod:
+  image: cypress/base:latest
+  only: [master]
+  stage: smoke-prod
+  cache:
+    key: cypress
+    paths:
+      - node_modules/
+      - yarn.lock
+  script:
+    - yarn
+    - yarn cypress install
+    - yarn cypress run -c baseUrl=https://ENFRAME_APP_NAME-prod.herokuapp.com/

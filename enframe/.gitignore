@@ -1,0 +1,12 @@
+# from yarn
+node_modules
+yarn-error.log
+
+# from parcel
+dist
+.cache
+enframe.js.map
+
+# from cypress
+cypress/videos
+cypress/screenshots
