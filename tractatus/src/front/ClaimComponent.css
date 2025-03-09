@@ -1,0 +1,30 @@
+.claim {
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+  border-left: 1px solid var(--blacktatus);
+}
+
+@media(max-width: 649px) {
+  .claim {
+    overflow: auto;
+  }
+}
+
+#_1, #_2, #_3, #_4, #_5, #_6, #_7 {
+  border: none;
+}
+
+.claim.with-subclaim .location {
+  cursor: pointer;
+}
+
+.claim:not(.with-subclaim) .paragraphs, .claim:not(.with-subclaim) .location {
+  cursor: auto;
+}
+
+.location {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

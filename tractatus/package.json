@@ -1,0 +1,44 @@
+{
+  "name": "tractatus",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "parcel build src/front/index.html",
+    "start": "ts-node src/back/server.ts",
+    "test": "yarn utest && yarn itest",
+    "utest": "yarn mocha --require ts-node/register \"src/**/**.test.*\" --reporter min",
+    "uwatch": "yarn utest --watch-extensions ts,tsx --watch",
+    "watch": "yarn kill && nodemon --watch src/ --ext ts,tsx,css --exec 'yarn build && yarn start'",
+    "cy": "yarn cypress open",
+    "itest": "./scripts/itest.sh :3000",
+    "kill": "./scripts/kill.sh :3000"
+  },
+  "devDependencies": {
+    "@types/chai-enzyme": "^0.6.6",
+    "@types/enzyme": "^3.9.1",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/mocha": "^5.2.6",
+    "chai": "^4.2.0",
+    "chai-enzyme": "^1.0.0-beta.1",
+    "cypress": "^3.2.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "mocha": "^6.1.4",
+    "nodemon": "^1.18.11"
+  },
+  "dependencies": {
+    "@types/compression": "^0.0.36",
+    "@types/express": "^4.16.1",
+    "@types/helmet": "^0.0.43",
+    "@types/react": "^16.8.15",
+    "@types/react-dom": "^16.8.4",
+    "compression": "^1.7.4",
+    "express": "^4.16.4",
+    "helmet": "^3.20.0",
+    "parcel": "^1.12.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "ts-node": "^8.1.0",
+    "typescript": "^3.4.5"
+  }
+}

@@ -1,0 +1,89 @@
+image: node:latest
+
+stages:
+  - build
+  - test
+  - deploy_to_staging
+  - smoke_staging
+  - deploy_to_prod
+  - smoke_prod
+
+cache:
+  paths:
+    - node_modules/
+    - yarn.lock
+
+build:
+  stage: build
+  script:
+    - yarn
+    - yarn build
+
+utest:
+  stage: test
+  script:
+    - yarn
+    - yarn utest
+
+itest:
+  image: cypress/base:latest
+  stage: test
+  cache:
+    key: cypress
+    paths:
+      - node_modules/
+      - yarn.lock
+  script:
+    - yarn
+    - yarn cypress install
+    - yarn itest
+
+deploy_to_staging:
+  stage: deploy_to_staging
+  only: [master]
+  script:
+    - yarn install --prod
+    - apt-get update -yq
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=tractatus-staging --api-key=$HEROKU_API_KEY
+
+smoke_staging:
+  image: cypress/base:latest
+  stage: smoke_staging
+  cache:
+    key: cypress
+    paths:
+      - node_modules/
+      - yarn.lock
+  only: [master]
+  script:
+    - yarn
+    - yarn cypress install
+    - yarn cypress run -c baseUrl=https://tractatus.gatlin.io
+
+deploy_to_prod:
+  stage: deploy_to_prod
+  when: manual
+  only: [master]
+  allow_failure: false
+  script:
+    - yarn install --prod
+    - apt-get update -yq
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=tractatus-prod --api-key=$HEROKU_API_KEY
+
+smoke_prod:
+  image: cypress/base:latest
+  only: [master]
+  stage: smoke_prod
+  cache:
+    key: cypress
+    paths:
+      - node_modules/
+      - yarn.lock
+  script:
+    - yarn
+    - yarn cypress install
+    - yarn cypress run -c baseUrl=https://www.tractatus.online

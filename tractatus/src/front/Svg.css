@@ -1,0 +1,9 @@
+svg {
+  stroke: currentColor;
+}
+
+svg.chevron {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1;
+}

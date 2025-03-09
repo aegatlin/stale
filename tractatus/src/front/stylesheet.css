@@ -1,0 +1,42 @@
+@import './HeaderComponent.css';
+@import './ClaimComponent.css';
+@import './Svg.css';
+
+body {
+  --header-height: 60px;
+  --blacktatus: #000000d6;
+  --title-font: 'Libre Baskerville', serif;
+  --body-font: 'Proza Libre', sans-serif;
+  margin: 0;
+  color: var(--blacktatus);
+  font-family: var(--body-font);
+  line-height: 1.5;
+}
+
+body.no-scroll {
+  overflow-y: hidden;
+}
+
+h1, h2, h3 {
+  font-family: var(--title-font);
+}
+
+.main {
+  max-width: 700px;
+  margin: auto;
+  margin-top: calc(var(--header-height) + 20px);
+  padding: 0 20px;
+}
+
+.paragraph {
+  margin-bottom: 20px;
+}
+
+img {
+  max-width: 400px;
+  max-height: 300px;
+}
+
+span[id^="MathJax-Element"] {
+  position: unset !important;
+}

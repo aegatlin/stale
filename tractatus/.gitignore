@@ -1,0 +1,7 @@
+.envrc
+.cache
+dist
+node_modules
+yarn-error.log
+cypress/videos
+cypress/screenshots
