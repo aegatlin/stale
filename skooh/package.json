@@ -1,0 +1,39 @@
+{
+  "name": "skooh",
+  "type": "module",
+  "version": "0.3.2",
+  "description": "skooh is a git hooks manager",
+  "bin": "./skooh.js",
+  "scripts": {
+    "ppp": "npm version patch && npm publish && git push",
+    "format": "prettier --write skooh.js lib.js lib.test.js",
+    "test": "node --test --test-reporter spec"
+  },
+  "hooks": {
+    "pre-commit": "npm run format && npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aegatlin/skooh.git"
+  },
+  "keywords": [
+    "git",
+    "hooks",
+    "manager",
+    "hook",
+    "package.json",
+    "package",
+    "simple",
+    "minimal",
+    "easy"
+  ],
+  "author": "Austin Gatlin",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/aegatlin/skooh/issues"
+  },
+  "homepage": "https://github.com/aegatlin/skooh",
+  "devDependencies": {
+    "prettier": "^2.8.3"
+  }
+}
